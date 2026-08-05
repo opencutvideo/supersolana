@@ -109,7 +109,7 @@ export default function Dashboard() {
       </header>
 
       <div className="flex flex-1 overflow-hidden">
-        {/* Sidebar — desktop only */}
+        {/* Sidebar: desktop only */}
         <aside className="hidden md:flex flex-col w-52 border-r border-[#1E1E2E] bg-[#0D0D16] shrink-0">
           <div className="p-3 flex-1">
             <p className="text-xs font-mono uppercase tracking-widest text-[#333350] px-3 pt-3 pb-2">Menu</p>

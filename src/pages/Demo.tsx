@@ -223,7 +223,7 @@ export default function Demo() {
               >
                 <div className="flex items-center gap-2 px-4 py-3 border-b border-[#1E1E2E] bg-[#0D0D18]">
                   <CheckCircle2 size={13} className="text-[#14F195]" />
-                  <span className="text-xs font-mono text-[#14F195]">{activeTool} — 200 OK</span>
+                  <span className="text-xs font-mono text-[#14F195]">{activeTool}: 200 OK</span>
                   <span className="ml-auto text-xs text-[#444460] font-mono">{Math.floor(Math.random() * 150 + 80)}ms</span>
                 </div>
                 <div className="p-5">

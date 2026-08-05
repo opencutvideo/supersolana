@@ -3,13 +3,15 @@ import { motion } from 'framer-motion'
 import { ArrowRight, Zap } from 'lucide-react'
 
 const TOOLS = [
-  { name: 'wallet_reader', desc: 'Reads any Solana wallet — balances, history, tokens' },
+  { name: 'wallet_reader', desc: 'Reads any Solana wallet: balances, history, tokens' },
   { name: 'nft_lookup', desc: 'Metaplex metadata, Magic Eden listings, floor prices' },
-  { name: 'defi_positions', desc: 'Raydium, Orca, Jupiter — open positions in real time' },
+  { name: 'defi_positions', desc: 'Raydium, Orca, Jupiter: open positions in real time' },
   { name: 'price_feed', desc: 'SOL and token prices via CoinGecko + Birdeye' },
-  { name: 'social_monitor', desc: 'Twitter, Discord, Telegram signals — no API keys' },
+  { name: 'social_monitor', desc: 'Twitter, Discord, Telegram signals with no API keys' },
   { name: 'tx_decoder', desc: 'Parses raw transactions into human-readable summaries' },
 ]
+
+const ease = [0.22, 1, 0.36, 1] as const
 
 export default function Home() {
   return (
@@ -24,15 +26,20 @@ export default function Home() {
         <div className="absolute bottom-1/4 right-1/5 w-64 h-64 rounded-full bg-[#00FF41]/6 blur-3xl animate-pulse-slow pointer-events-none" style={{ animationDelay: '2s' }} />
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7, ease }}
           className="relative z-10 max-w-3xl"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#FF3399]/25 bg-[#FF3399]/8 text-[#FF3399] text-xs font-mono mb-8">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, ease }}
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#FF3399]/25 bg-[#FF3399]/8 text-[#FF3399] text-xs font-mono mb-8"
+          >
             <span className="w-1.5 h-1.5 rounded-full bg-[#00FF41] animate-pulse" />
             Solana mainnet · live
-          </div>
+          </motion.div>
 
           <h1 className="font-display font-bold text-5xl sm:text-6xl lg:text-7xl text-white leading-[1.06] tracking-tight mb-5">
             Your agent,<br />
@@ -40,7 +47,7 @@ export default function Home() {
           </h1>
 
           <p className="text-lg text-[#888] max-w-xl mx-auto leading-relaxed mb-10">
-            Six Solana tools. One install command. Your AI agent reads wallets, tracks DeFi, and monitors markets — no API keys, no setup.
+            Six Solana tools. One install command. Your AI agent reads wallets, tracks DeFi, and monitors markets with no API keys and no setup.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -63,9 +70,9 @@ export default function Home() {
 
         {/* Install command */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 36 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.8, delay: 0.28, ease }}
           className="relative z-10 mt-14 w-full max-w-xl"
         >
           <div className="card rounded-xl overflow-hidden glow-pink">
@@ -76,82 +83,81 @@ export default function Home() {
               <span className="ml-3 text-xs text-[#333] font-mono">agent shell</span>
             </div>
             <div className="p-5 font-mono text-sm">
-              <p className="text-[#444]"># one command, fully self-configures</p>
-              <p className="text-white mt-2">
-                Install SuperSolana:{' '}
-                <span className="text-[#FF3399]">https://supersolana.io/install</span>
+              <p className="text-[#555]">
+                <span className="text-[#00FF41]">$</span>{' '}
+                <span className="text-white">Install SuperSolana:</span>
               </p>
-              <div className="mt-4 space-y-1">
-                <p className="text-[#333]">Connecting tools...</p>
-                <p className="text-[#00FF41]">✓ 6 tools loaded · 0 API keys needed</p>
-                <p className="text-white mt-2">Ready. <span className="text-[#FF3399]">_</span></p>
-              </div>
+              <p className="text-[#FF3399] mt-1 break-all">
+                https://opencutvideo.github.io/supersolana/install.md
+              </p>
+              <p className="text-[#555] mt-3">
+                <span className="text-[#00FF41]">✓</span> 6 tools registered. Ready.
+              </p>
             </div>
           </div>
         </motion.div>
       </section>
 
-      {/* Tools list */}
+      {/* Tools grid */}
       <section className="py-20 px-4">
         <div className="max-w-4xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease }}
             viewport={{ once: true }}
-            className="mb-12"
+            className="mb-10"
           >
             <h2 className="font-display font-bold text-2xl sm:text-3xl text-white mb-3">
-              What gets installed
+              Six tools, one install
             </h2>
-            <p className="text-[#555] text-sm">Six focused tools. Nothing you don't need.</p>
+            <p className="text-sm text-[#555]">Everything your agent needs to work with Solana.</p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {TOOLS.map((tool, i) => (
               <motion.div
                 key={tool.name}
-                initial={{ opacity: 0, y: 14 }}
+                initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.06 }}
+                transition={{ delay: i * 0.07, duration: 0.5, ease }}
                 viewport={{ once: true }}
-                className="card p-5 rounded-xl flex items-start gap-4"
+                className="card p-4 rounded-xl"
               >
-                <span className="text-[#FF3399] font-mono text-xs mt-0.5 shrink-0">→</span>
-                <div>
-                  <code className="text-[#00FF41] text-sm font-mono">{tool.name}</code>
-                  <p className="text-sm text-[#555] mt-1">{tool.desc}</p>
-                </div>
+                <p className="font-mono text-xs text-[#FF3399] mb-1.5">{tool.name}</p>
+                <p className="text-xs text-[#555] leading-relaxed">{tool.desc}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* How it works — minimal */}
-      <section className="py-20 px-4 border-y border-[#1A1A1A] bg-[#0D0D0D]">
+      {/* How it works */}
+      <section className="py-20 px-4 border-t border-[#111]">
         <div className="max-w-4xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease }}
             viewport={{ once: true }}
-            className="mb-12"
+            className="mb-10"
           >
             <h2 className="font-display font-bold text-2xl sm:text-3xl text-white mb-3">
-              Three steps
+              How it works
             </h2>
           </motion.div>
 
-          <div className="space-y-3">
+          <div className="space-y-4">
             {[
-              { n: '01', t: 'Connect wallet', d: 'Phantom or MetaMask — no passwords.' },
-              { n: '02', t: 'Run one command', d: 'Paste the install URL into your agent.' },
-              { n: '03', t: 'Agent goes on-chain', d: 'Wallet reads, DeFi positions, market data — all live.' },
+              { n: '01', t: 'Connect wallet', d: 'Phantom or MetaMask, no passwords.' },
+              { n: '02', t: 'Paste the install command', d: 'One line into your agent chat window.' },
+              { n: '03', t: 'Agent goes on-chain', d: 'Wallet reads, DeFi positions, market data, all live.' },
             ].map((s, i) => (
               <motion.div
                 key={s.n}
                 initial={{ opacity: 0, x: -16 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.08 }}
+                transition={{ delay: i * 0.09, duration: 0.5, ease }}
                 viewport={{ once: true }}
                 className="card p-5 rounded-xl flex items-start gap-5"
               >
@@ -165,7 +171,7 @@ export default function Home() {
           </div>
 
           <div className="mt-8">
-            <Link to="/how-to" className="inline-flex items-center gap-2 text-sm text-[#FF3399] hover:text-[#FF55AA] font-medium transition-colors">
+            <Link to="/how-to" className="inline-flex items-center gap-2 text-sm text-[#FF3399] hover:text-[#FF55AA] font-medium transition-colors duration-200">
               Full guide <ArrowRight size={14} />
             </Link>
           </div>
@@ -177,8 +183,9 @@ export default function Home() {
         <div className="absolute inset-0 bg-hero-glow pointer-events-none" />
         <div className="relative z-10 max-w-xl mx-auto text-center">
           <motion.div
-            initial={{ opacity: 0, scale: 0.97 }}
+            initial={{ opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, ease }}
             viewport={{ once: true }}
           >
             <h2 className="font-display font-bold text-3xl sm:text-4xl text-white mb-4">

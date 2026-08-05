@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import Logo from './Logo'
-import { Github, Twitter } from 'lucide-react'
+import { Twitter } from 'lucide-react'
 
 const LINKS = {
   Product: [
@@ -36,19 +36,10 @@ export default function Footer() {
             </p>
             <div className="flex gap-3">
               <a
-                href="https://github.com/opencutvideo/supersolana"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-lg border border-[#1A1A1A] text-[#444] hover:text-white hover:border-[#FF3399]/40 transition-all"
-                aria-label="GitHub"
-              >
-                <Github size={15} />
-              </a>
-              <a
                 href="https://twitter.com/opencutvideo"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-lg border border-[#1A1A1A] text-[#444] hover:text-white hover:border-[#FF3399]/40 transition-all"
+                className="p-2 rounded-lg border border-[#1A1A1A] text-[#444] hover:text-white hover:border-[#FF3399]/40 transition-all duration-200"
                 aria-label="Twitter"
               >
                 <Twitter size={15} />
@@ -67,7 +58,7 @@ export default function Footer() {
                   <li key={link.to}>
                     <Link
                       to={link.to}
-                      className="text-sm text-[#555] hover:text-white transition-colors"
+                      className="text-sm text-[#555] hover:text-white transition-colors duration-200"
                     >
                       {link.label}
                     </Link>

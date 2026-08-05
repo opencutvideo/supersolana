@@ -39,7 +39,7 @@ export default function Navbar() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-out ${
           scrolled
             ? 'bg-[#080808]/90 backdrop-blur-xl border-b border-[#1A1A1A]'
             : 'bg-transparent'
@@ -60,7 +60,7 @@ export default function Navbar() {
               <Link
                 key={link.to}
                 to={link.to}
-                className={`px-3.5 py-2 rounded-lg text-sm font-medium transition-colors ${
+                className={`px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                   location.pathname === link.to
                     ? 'text-[#FF3399] bg-[#FF3399]/10'
                     : 'text-[#666] hover:text-white hover:bg-white/5'
@@ -77,14 +77,14 @@ export default function Navbar() {
               <>
                 <button
                   onClick={() => navigate('/dashboard')}
-                  className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium text-[#00FF41] border border-[#00FF41]/25 hover:bg-[#00FF41]/8 transition-all"
+                  className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium text-[#00FF41] border border-[#00FF41]/25 hover:bg-[#00FF41]/8 transition-all duration-200"
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-[#00FF41] animate-pulse shrink-0" />
                   {session.username}
                 </button>
                 <button
                   onClick={disconnect}
-                  className="text-xs text-[#333] hover:text-[#666] transition-colors"
+                  className="text-xs text-[#333] hover:text-[#666] transition-colors duration-200"
                 >
                   Sign out
                 </button>
@@ -93,7 +93,7 @@ export default function Navbar() {
               <>
                 <Link
                   to="/login"
-                  className="text-sm font-medium text-[#555] hover:text-white transition-colors px-2 py-1"
+                  className="text-sm font-medium text-[#555] hover:text-white transition-colors duration-200 px-2 py-1"
                 >
                   Sign in
                 </Link>
@@ -110,7 +110,7 @@ export default function Navbar() {
 
           {/* Mobile burger */}
           <button
-            className="md:hidden relative z-10 p-2 rounded-lg text-[#555] hover:text-white hover:bg-white/5 transition-all"
+            className="md:hidden relative z-10 p-2 rounded-lg text-[#555] hover:text-white hover:bg-white/5 transition-all duration-200"
             onClick={toggleMenu}
             aria-label={open ? 'Close menu' : 'Open menu'}
           >
@@ -142,7 +142,7 @@ export default function Navbar() {
               <Link
                 key={link.to}
                 to={link.to}
-                className={`px-4 py-3.5 rounded-xl text-sm font-medium transition-colors ${
+                className={`px-4 py-3.5 rounded-xl text-sm font-medium transition-all duration-200 ${
                   location.pathname === link.to
                     ? 'text-[#FF3399] bg-[#FF3399]/10'
                     : 'text-[#888] hover:text-white hover:bg-white/5'
@@ -161,7 +161,7 @@ export default function Navbar() {
                   className="w-full flex items-center justify-center gap-2 px-4 py-3.5 rounded-xl text-sm font-medium text-[#00FF41] border border-[#00FF41]/25"
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-[#00FF41] animate-pulse" />
-                  Dashboard — {session.username}
+                  Dashboard: {session.username}
                 </button>
                 <button
                   onClick={() => { disconnect(); setOpen(false); document.body.style.overflow = '' }}

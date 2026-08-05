@@ -11,7 +11,7 @@ const SECTIONS = [
   },
   {
     title: 'Session data',
-    content: `Your session is stored locally in your browser under the key supersolana_session. It persists until you sign out or clear your browser storage. We use this to keep you logged in between page loads. No data is sent to a server during this process — the site runs entirely in your browser.`,
+    content: `Your session is stored locally in your browser under the key supersolana_session. It persists until you sign out or clear your browser storage. We use this to keep you logged in between page loads. No data is sent to a server during this process. The site runs entirely in your browser.`,
   },
   {
     title: 'Analytics',
@@ -27,7 +27,7 @@ const SECTIONS = [
   },
   {
     title: 'Contact',
-    content: `Questions about data handling? Reach us at privacy@opencutvideo.com or open an issue on our GitHub repository at github.com/opencutvideo/supersolana.`,
+    content: `Questions about data handling? Reach us at privacy@opencutvideo.com or open an issue on our GitHub repository at github.com/opencutvideo.`,
   },
 ]
 
