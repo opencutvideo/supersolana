@@ -1,5 +1,7 @@
 import { HashRouter, Routes, Route } from 'react-router-dom'
 import Layout from './components/Layout'
+import ScrollToTop from './components/ScrollToTop'
+import CookieBanner from './components/CookieBanner'
 import Home from './pages/Home'
 import About from './pages/About'
 import HowTo from './pages/HowTo'
@@ -15,6 +17,8 @@ export default function App() {
   return (
     <WalletProvider>
       <HashRouter>
+        <ScrollToTop />
+        <CookieBanner />
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
