@@ -4,9 +4,8 @@
   <meta charset="UTF-8" />
   <title>SuperSolana</title>
   <script>
-    // GitHub Pages SPA redirect
-    // Redirects to index.html with the path encoded as query param
-    var seg = 1;
+    // GitHub Pages SPA redirect for custom domain (root path, seg=0)
+    var seg = 0;
     var l = window.location;
     l.replace(
       l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
