@@ -4,15 +4,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        solana: {
-          purple: '#9945FF',
-          green: '#14F195',
-          teal: '#00C2FF',
-          dark: '#0A0A0F',
-          card: '#111118',
-          border: '#1E1E2E',
-          muted: '#3A3A5C',
-          text: '#C8C8E0',
+        brand: {
+          pink: '#FF3399',
+          green: '#00FF41',
+          blue: '#3B5FCC',
+          dark: '#080808',
+          card: '#0F0F0F',
+          border: '#1A1A1A',
+          muted: '#2A2A2A',
+          text: '#E0E0E0',
         }
       },
       fontFamily: {
@@ -22,8 +22,8 @@ export default {
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'hero-glow': 'radial-gradient(ellipse 80% 50% at 50% -20%, rgba(153,69,255,0.25), transparent)',
-        'card-glow': 'linear-gradient(135deg, rgba(153,69,255,0.08), rgba(20,241,149,0.04))',
+        'hero-glow': 'radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255,51,153,0.18), transparent)',
+        'card-glow': 'linear-gradient(135deg, rgba(255,51,153,0.06), rgba(0,255,65,0.03))',
       },
       animation: {
         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',

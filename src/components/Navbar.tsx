@@ -41,7 +41,7 @@ export default function Navbar() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? 'bg-[#0A0A0F]/90 backdrop-blur-xl border-b border-[#1E1E2E]'
+            ? 'bg-[#080808]/90 backdrop-blur-xl border-b border-[#1A1A1A]'
             : 'bg-transparent'
         }`}
       >
@@ -62,8 +62,8 @@ export default function Navbar() {
                 to={link.to}
                 className={`px-3.5 py-2 rounded-lg text-sm font-medium transition-colors ${
                   location.pathname === link.to
-                    ? 'text-[#9945FF] bg-[#9945FF]/10'
-                    : 'text-[#8888AA] hover:text-white hover:bg-white/5'
+                    ? 'text-[#FF3399] bg-[#FF3399]/10'
+                    : 'text-[#666] hover:text-white hover:bg-white/5'
                 }`}
               >
                 {link.label}
@@ -77,14 +77,14 @@ export default function Navbar() {
               <>
                 <button
                   onClick={() => navigate('/dashboard')}
-                  className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium text-[#14F195] border border-[#14F195]/25 hover:bg-[#14F195]/8 transition-all"
+                  className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium text-[#00FF41] border border-[#00FF41]/25 hover:bg-[#00FF41]/8 transition-all"
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#14F195] animate-pulse shrink-0" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#00FF41] animate-pulse shrink-0" />
                   {session.username}
                 </button>
                 <button
                   onClick={disconnect}
-                  className="text-xs text-[#444460] hover:text-[#8888AA] transition-colors"
+                  className="text-xs text-[#333] hover:text-[#666] transition-colors"
                 >
                   Sign out
                 </button>
@@ -93,7 +93,7 @@ export default function Navbar() {
               <>
                 <Link
                   to="/login"
-                  className="text-sm font-medium text-[#8888AA] hover:text-white transition-colors px-2 py-1"
+                  className="text-sm font-medium text-[#555] hover:text-white transition-colors px-2 py-1"
                 >
                   Sign in
                 </Link>
@@ -110,7 +110,7 @@ export default function Navbar() {
 
           {/* Mobile burger */}
           <button
-            className="md:hidden relative z-10 p-2 rounded-lg text-[#8888AA] hover:text-white hover:bg-white/5 transition-all"
+            className="md:hidden relative z-10 p-2 rounded-lg text-[#555] hover:text-white hover:bg-white/5 transition-all"
             onClick={toggleMenu}
             aria-label={open ? 'Close menu' : 'Open menu'}
           >
@@ -122,7 +122,7 @@ export default function Navbar() {
       {/* Mobile overlay */}
       {open && (
         <div
-          className="md:hidden fixed inset-0 z-40 bg-[#0A0A0F]/95 backdrop-blur-xl"
+          className="md:hidden fixed inset-0 z-40 bg-[#080808]/95 backdrop-blur-xl"
           onClick={() => {
             setOpen(false)
             document.body.style.overflow = ''
@@ -136,7 +136,7 @@ export default function Navbar() {
           open ? 'translate-y-0 opacity-100 pointer-events-auto' : '-translate-y-4 opacity-0 pointer-events-none'
         }`}
       >
-        <div className="bg-[#0D0D18]/98 backdrop-blur-xl border-b border-[#1E1E2E] px-4 pt-2 pb-6">
+        <div className="bg-[#0D0D0D]/98 backdrop-blur-xl border-b border-[#1A1A1A] px-4 pt-2 pb-6">
           <div className="flex flex-col gap-1">
             {NAV_LINKS.map(link => (
               <Link
@@ -144,8 +144,8 @@ export default function Navbar() {
                 to={link.to}
                 className={`px-4 py-3.5 rounded-xl text-sm font-medium transition-colors ${
                   location.pathname === link.to
-                    ? 'text-[#9945FF] bg-[#9945FF]/10'
-                    : 'text-[#AAAACC] hover:text-white hover:bg-white/5'
+                    ? 'text-[#FF3399] bg-[#FF3399]/10'
+                    : 'text-[#888] hover:text-white hover:bg-white/5'
                 }`}
               >
                 {link.label}
@@ -153,19 +153,19 @@ export default function Navbar() {
             ))}
           </div>
 
-          <div className="mt-4 pt-4 border-t border-[#1A1A28] flex flex-col gap-2.5">
+          <div className="mt-4 pt-4 border-t border-[#111] flex flex-col gap-2.5">
             {session ? (
               <>
                 <button
                   onClick={() => navigate('/dashboard')}
-                  className="w-full flex items-center justify-center gap-2 px-4 py-3.5 rounded-xl text-sm font-medium text-[#14F195] border border-[#14F195]/25"
+                  className="w-full flex items-center justify-center gap-2 px-4 py-3.5 rounded-xl text-sm font-medium text-[#00FF41] border border-[#00FF41]/25"
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#14F195] animate-pulse" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#00FF41] animate-pulse" />
                   Dashboard — {session.username}
                 </button>
                 <button
                   onClick={() => { disconnect(); setOpen(false); document.body.style.overflow = '' }}
-                  className="text-sm text-[#555570] text-center py-2"
+                  className="text-sm text-[#444] text-center py-2"
                 >
                   Sign out
                 </button>

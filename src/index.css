@@ -4,12 +4,12 @@
 @tailwind utilities;
 
 :root {
-  --solana-purple: #9945FF;
-  --solana-green: #14F195;
-  --solana-teal: #00C2FF;
-  --bg-dark: #0A0A0F;
-  --bg-card: #111118;
-  --border: #1E1E2E;
+  --brand-pink: #FF3399;
+  --brand-green: #00FF41;
+  --brand-blue: #3B5FCC;
+  --bg-dark: #080808;
+  --bg-card: #0F0F0F;
+  --border: #1A1A1A;
 }
 
 * {
@@ -25,7 +25,7 @@ html {
 
 body {
   background-color: var(--bg-dark);
-  color: #E8E8F0;
+  color: #E0E0E0;
   font-family: 'Inter', sans-serif;
   font-size: 16px;
   line-height: 1.6;
@@ -37,18 +37,18 @@ body {
 /* Scrollbar */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg-dark); }
-::-webkit-scrollbar-thumb { background: #2A2A3E; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #3A3A5C; }
+::-webkit-scrollbar-thumb { background: #222; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #333; }
 
 /* Selection */
 ::selection {
-  background: rgba(153, 69, 255, 0.3);
+  background: rgba(255, 51, 153, 0.3);
   color: #fff;
 }
 
 /* Focus ring */
 :focus-visible {
-  outline: 2px solid var(--solana-purple);
+  outline: 2px solid var(--brand-pink);
   outline-offset: 2px;
 }
 
@@ -57,26 +57,26 @@ body {
 
 /* Gradient text */
 .gradient-text {
-  background: linear-gradient(135deg, #9945FF 0%, #14F195 100%);
+  background: linear-gradient(135deg, #FF3399 0%, #00FF41 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.gradient-text-teal {
-  background: linear-gradient(135deg, #00C2FF 0%, #14F195 100%);
+.gradient-text-blue {
+  background: linear-gradient(135deg, #3B5FCC 0%, #00FF41 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 /* Glow effects */
-.glow-purple {
-  box-shadow: 0 0 30px rgba(153, 69, 255, 0.25), 0 0 60px rgba(153, 69, 255, 0.1);
+.glow-pink {
+  box-shadow: 0 0 30px rgba(255, 51, 153, 0.2), 0 0 60px rgba(255, 51, 153, 0.08);
 }
 
 .glow-green {
-  box-shadow: 0 0 30px rgba(20, 241, 149, 0.2), 0 0 60px rgba(20, 241, 149, 0.08);
+  box-shadow: 0 0 30px rgba(0, 255, 65, 0.15), 0 0 60px rgba(0, 255, 65, 0.06);
 }
 
 /* Card styles */
@@ -88,13 +88,13 @@ body {
 }
 
 .card:hover {
-  border-color: rgba(153, 69, 255, 0.4);
-  box-shadow: 0 0 20px rgba(153, 69, 255, 0.1);
+  border-color: rgba(255, 51, 153, 0.35);
+  box-shadow: 0 0 20px rgba(255, 51, 153, 0.08);
 }
 
 /* Button base */
 .btn-primary {
-  background: linear-gradient(135deg, #9945FF, #7B2FDB);
+  background: var(--brand-pink);
   color: #fff;
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 600;
@@ -104,29 +104,24 @@ body {
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, #A855FF, #8B3FEB);
-  box-shadow: 0 4px 20px rgba(153, 69, 255, 0.4);
+  background: #FF55AA;
+  box-shadow: 0 4px 20px rgba(255, 51, 153, 0.45);
   transform: translateY(-1px);
 }
 
 .btn-outline {
   background: transparent;
-  color: #E8E8F0;
+  color: #E0E0E0;
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 500;
-  border: 1px solid #1E1E2E;
+  border: 1px solid #222;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .btn-outline:hover {
-  border-color: rgba(153, 69, 255, 0.5);
-  color: #9945FF;
-}
-
-/* Grid noise texture */
-.noise-bg {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  border-color: rgba(255, 51, 153, 0.5);
+  color: #FF3399;
 }
 
 /* Animated gradient border */
@@ -140,7 +135,7 @@ body {
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(135deg, #9945FF, #14F195);
+  background: linear-gradient(135deg, #FF3399, #00FF41);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
@@ -155,7 +150,7 @@ body {
 
 /* Dot grid background */
 .dot-grid {
-  background-image: radial-gradient(circle, rgba(153,69,255,0.12) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(255,51,153,0.1) 1px, transparent 1px);
   background-size: 32px 32px;
 }
 

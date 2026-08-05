@@ -3,19 +3,19 @@ export default function Logo({ size = 32 }: { size?: number }) {
     <svg width={size} height={size} viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id="logoGrad1" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="#9945FF"/>
-          <stop offset="100%" stopColor="#14F195"/>
+          <stop offset="0%" stopColor="#FF3399"/>
+          <stop offset="100%" stopColor="#00FF41"/>
         </linearGradient>
         <linearGradient id="logoGrad2" x1="48" y1="0" x2="0" y2="48" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="#14F195"/>
-          <stop offset="100%" stopColor="#00C2FF"/>
+          <stop offset="0%" stopColor="#00FF41"/>
+          <stop offset="100%" stopColor="#3B5FCC"/>
         </linearGradient>
       </defs>
       {/* Outer hex */}
       <path
         d="M24 2L44 13.5V34.5L24 46L4 34.5V13.5L24 2Z"
         fill="url(#logoGrad1)"
-        opacity="0.15"
+        opacity="0.12"
       />
       {/* S shape - SuperSolana */}
       <path
