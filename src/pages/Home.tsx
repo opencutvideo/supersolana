@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowRight, Zap } from 'lucide-react'
+import InteractiveBackground from '../components/InteractiveBackground'
 
 const TOOLS = [
   { name: 'wallet_reader', desc: 'Reads any Solana wallet: balances, history, tokens' },
@@ -16,10 +17,10 @@ const ease = [0.22, 1, 0.36, 1] as const
 export default function Home() {
   return (
     <div className="pt-16">
+      <InteractiveBackground />
       {/* Hero */}
       <section className="relative min-h-[88vh] flex flex-col items-center justify-center px-4 text-center overflow-hidden">
         <div className="absolute inset-0 bg-hero-glow pointer-events-none" />
-        <div className="absolute inset-0 dot-grid opacity-30 pointer-events-none" />
 
         {/* Orbs */}
         <div className="absolute top-1/3 left-1/5 w-72 h-72 rounded-full bg-[#FF3399]/8 blur-3xl animate-pulse-slow pointer-events-none" />
