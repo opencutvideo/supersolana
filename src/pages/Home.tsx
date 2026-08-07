@@ -43,8 +43,8 @@ export default function Home() {
           </motion.div>
 
           <h1 className="font-display font-bold text-5xl sm:text-6xl lg:text-7xl text-white leading-[1.06] tracking-tight mb-5">
-            Your agent,<br />
-            <span className="gradient-text">on-chain.</span>
+            Solana tools<br />
+            <span className="gradient-text">for AI agents.</span>
           </h1>
 
           <p className="text-lg text-[#888] max-w-xl mx-auto leading-relaxed mb-10">

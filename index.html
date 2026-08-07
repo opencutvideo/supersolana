@@ -4,36 +4,72 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#FF3399" />
-    <meta name="description" content="SuperSolana gives your AI agents Solana blockchain superpowers. Read on-chain data, track wallets, monitor NFTs, and interact with DeFi protocols." />
-    <meta property="og:title" content="SuperSolana" />
-    <meta property="og:description" content="Solana blockchain tools for AI agents." />
+    <meta name="theme-color" content="#0A0A0F" />
+    <meta name="application-name" content="SuperSolana" />
+    <meta name="description" content="Give AI agents live Solana access with wallet, NFT, DeFi, price, social, and transaction tools. Install SuperSolana in one command." />
+    <meta property="og:title" content="Solana AI Agent Tools for Wallets, DeFi & NFTs | SuperSolana" />
+    <meta property="og:description" content="Give AI agents live Solana access with wallet, NFT, DeFi, price, social, and transaction tools." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://supersolana.fun/" />
+    <meta property="og:site_name" content="SuperSolana" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="https://supersolana.fun/og-image.png" />
+    <meta property="og:image:alt" content="SuperSolana Solana AI agent tools" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="SuperSolana" />
-    <meta name="twitter:description" content="Solana blockchain tools for AI agents." />
+    <meta name="twitter:title" content="Solana AI Agent Tools for Wallets, DeFi & NFTs | SuperSolana" />
+    <meta name="twitter:description" content="Give AI agents live Solana access with wallet, NFT, DeFi, price, social, and transaction tools." />
+    <meta name="twitter:image" content="https://supersolana.fun/og-image.png" />
+    <meta name="twitter:image:alt" content="SuperSolana Solana AI agent tools" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://supersolana.fun/" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
     <meta name="ory-verify" content="orynth-883a3d16b5194aa7ba1c28feb1c1e6bb" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
     <title>SuperSolana</title>
     <script>
-      // Handle SPA redirect from 404.html
+      // Restore clean BrowserRouter paths after GitHub Pages serves 404.html.
       (function(l) {
-        if (l.search[1] === '/') {
-          var decoded = l.search.slice(1).split('&').map(function(s) {
-            return s.replace(/~and~/g, '&');
-          });
-          window.history.replaceState(null, null,
-            l.pathname.slice(0, -1) + decoded[0] +
-            (decoded[1] ? '?' + decoded[1] : '') +
-            l.hash
-          );
+        var params = new URLSearchParams(l.search);
+        var path = params.get('p');
+        if (path) {
+          var query = params.get('q');
+          window.history.replaceState(null, null, path + (query ? '?' + query : '') + l.hash);
         }
       }(window.location));
+    </script>
+    <script type="application/ld+json" data-seo-schema>
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://supersolana.fun/#organization",
+            "name": "OpenCut Video",
+            "url": "https://opencutvideo.com",
+            "sameAs": ["https://github.com/opencutvideo/supersolana", "https://twitter.com/opencutvideo"]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://supersolana.fun/#website",
+            "name": "SuperSolana",
+            "url": "https://supersolana.fun/",
+            "publisher": { "@id": "https://supersolana.fun/#organization" },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "WebApplication",
+            "name": "SuperSolana",
+            "url": "https://supersolana.fun/",
+            "applicationCategory": "DeveloperApplication",
+            "operatingSystem": "Web",
+            "description": "Solana blockchain tools for AI agents.",
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+          }
+        ]
+      }
     </script>
   </head>
   <body>

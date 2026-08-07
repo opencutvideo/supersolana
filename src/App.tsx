@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Layout from './components/Layout'
 import ScrollToTop from './components/ScrollToTop'
 import CookieBanner from './components/CookieBanner'
@@ -16,7 +16,7 @@ import { WalletProvider } from './context/WalletContext'
 export default function App() {
   return (
     <WalletProvider>
-      <HashRouter>
+      <BrowserRouter>
         <ScrollToTop />
         <CookieBanner />
         <Routes>
@@ -32,7 +32,7 @@ export default function App() {
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
-      </HashRouter>
+      </BrowserRouter>
     </WalletProvider>
   )
 }
