@@ -82,6 +82,11 @@ export default function Navbar() {
                   <span className="w-1.5 h-1.5 rounded-full bg-[#00FF41] animate-pulse shrink-0" />
                   {session.username}
                 </button>
+                {session.network === 'testnet' && (
+                  <span className="hidden lg:flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono uppercase tracking-wider bg-[#14F195]/15 text-[#14F195] border border-[#14F195]/20">
+                    Testnet
+                  </span>
+                )}
                 <button
                   onClick={disconnect}
                   className="text-xs text-[#333] hover:text-[#666] transition-colors duration-200"

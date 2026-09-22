@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { LogOut, Wallet, Copy, CheckCheck, BarChart3, Zap, Globe, Shield, ExternalLink, RefreshCw, ArrowLeft } from 'lucide-react'
+import { LogOut, Wallet, Copy, CheckCheck, BarChart3, Zap, Globe, Shield, ExternalLink, RefreshCw, ArrowLeft, FlaskConical, Droplet } from 'lucide-react'
 import { useWallet } from '../context/WalletContext'
 import Logo from '../components/Logo'
 
@@ -42,11 +42,14 @@ function CopyButton({ text }: { text: string }) {
 }
 
 export default function Dashboard() {
-  const { session, disconnect } = useWallet()
+  const { session, disconnect, refreshBalance } = useWallet()
   const navigate = useNavigate()
   const [solPrice, setSolPrice] = useState<string | null>(null)
   const [refreshing, setRefreshing] = useState(false)
+  const [balanceRefreshing, setBalanceRefreshing] = useState(false)
   const [activeNav, setActiveNav] = useState('overview')
+
+  const isTestnet = session?.network === 'testnet'
 
   useEffect(() => {
     if (!session) { navigate('/login'); return }
@@ -66,6 +69,12 @@ export default function Dashboard() {
     }
   }
 
+  const handleRefreshBalance = async () => {
+    setBalanceRefreshing(true)
+    await refreshBalance()
+    setBalanceRefreshing(false)
+  }
+
   if (!session) return null
 
   const walletLabel =
@@ -78,9 +87,12 @@ export default function Dashboard() {
     : session.walletType === 'metamask' ? '#F6851B'
     : '#14F195'
 
+  const networkLabel = isTestnet ? 'Testnet' : 'Mainnet'
+  const networkColor = isTestnet ? '#14F195' : '#9945FF'
+
   return (
     <div className="min-h-screen bg-[#0A0A0F] flex flex-col">
-      {/* Top bar (mobile + desktop) */}
+      {/* Top bar */}
       <header className="flex items-center justify-between px-4 sm:px-6 h-14 border-b border-[#1E1E2E] bg-[#0D0D16] sticky top-0 z-30">
         <div className="flex items-center gap-3">
           <Link to="/" className="flex items-center gap-2 mr-2">
@@ -93,6 +105,12 @@ export default function Dashboard() {
           <span className="hidden sm:block font-display text-sm text-[#666680]">Dashboard</span>
         </div>
         <div className="flex items-center gap-3">
+          {isTestnet && (
+            <span className="hidden sm:flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono uppercase tracking-wider bg-[#14F195]/15 text-[#14F195] border border-[#14F195]/20">
+              <FlaskConical size={10} />
+              Testnet
+            </span>
+          )}
           <span className="flex items-center gap-1.5 text-xs text-[#14F195]">
             <span className="w-1.5 h-1.5 rounded-full bg-[#14F195] animate-pulse" />
             <span className="hidden sm:inline">All systems operational</span>
@@ -109,7 +127,7 @@ export default function Dashboard() {
       </header>
 
       <div className="flex flex-1 overflow-hidden">
-        {/* Sidebar: desktop only */}
+        {/* Sidebar */}
         <aside className="hidden md:flex flex-col w-52 border-r border-[#1E1E2E] bg-[#0D0D16] shrink-0">
           <div className="p-3 flex-1">
             <p className="text-xs font-mono uppercase tracking-widest text-[#333350] px-3 pt-3 pb-2">Menu</p>
@@ -162,10 +180,48 @@ export default function Dashboard() {
             <h1 className="font-display font-bold text-lg text-white">
               Welcome back, <span style={{ color: walletColor }}>{session.username}</span>
             </h1>
-            <p className="text-xs text-[#444460] mt-0.5">
-              Connected via {walletLabel}
-            </p>
+            <div className="flex items-center gap-2 mt-0.5">
+              <p className="text-xs text-[#444460]">
+                Connected via {walletLabel}
+              </p>
+              <span className="text-[#2A2A3E]">·</span>
+              <span
+                className="flex items-center gap-1 text-xs font-medium"
+                style={{ color: networkColor }}
+              >
+                {isTestnet && <FlaskConical size={10} />}
+                {networkLabel}
+              </span>
+            </div>
           </div>
+
+          {/* Testnet banner */}
+          {isTestnet && (
+            <motion.div
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+              className="mb-5 flex items-start gap-3 p-4 rounded-xl bg-[#14F195]/5 border border-[#14F195]/20"
+            >
+              <FlaskConical size={16} className="text-[#14F195] mt-0.5 shrink-0" />
+              <div className="flex-1">
+                <p className="text-xs text-[#14F195] font-medium">Solana Testnet Mode</p>
+                <p className="text-xs text-[#8888AA] mt-1 leading-relaxed">
+                  You are connected to Solana Testnet. Transactions use test SOL with no real value.
+                  Need test SOL? Visit the{' '}
+                  <a
+                    href="https://faucet.solana.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#14F195] hover:underline inline-flex items-center gap-0.5"
+                  >
+                    Solana Faucet <ExternalLink size={10} />
+                  </a>
+                  {' '}to get free test tokens airdropped to your wallet.
+                </p>
+              </div>
+            </motion.div>
+          )}
 
           {/* Stats grid */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
@@ -192,6 +248,16 @@ export default function Dashboard() {
                   <Wallet size={14} className="text-[#444460]" />
                   Wallet
                 </h2>
+                {session.walletType === 'phantom' && (
+                  <button
+                    onClick={handleRefreshBalance}
+                    disabled={balanceRefreshing}
+                    className="p-1.5 rounded-md hover:bg-white/5 text-[#444460] hover:text-white transition-all"
+                    title="Refresh balance"
+                  >
+                    <RefreshCw size={13} className={balanceRefreshing ? 'animate-spin' : ''} />
+                  </button>
+                )}
               </div>
               <div className="space-y-3">
                 <div>
@@ -209,18 +275,33 @@ export default function Dashboard() {
                     <p className="text-xs font-medium text-white capitalize">{session.walletType}</p>
                   </div>
                   <div>
+                    <p className="text-xs text-[#444460] mb-0.5">Network</p>
+                    <p className="text-xs font-medium" style={{ color: networkColor }}>
+                      {isTestnet && <FlaskConical size={9} className="inline mr-0.5" />}
+                      {networkLabel}
+                    </p>
+                  </div>
+                  <div>
                     <p className="text-xs text-[#444460] mb-0.5">Joined</p>
                     <p className="text-xs font-medium text-white">
                       {new Date(session.joinedAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })}
                     </p>
                   </div>
-                  {session.balance && (
-                    <div>
-                      <p className="text-xs text-[#444460] mb-0.5">Balance</p>
-                      <p className="text-xs font-medium text-white">{session.balance}</p>
-                    </div>
-                  )}
                 </div>
+                {session.balance && (
+                  <div className="pt-2 border-t border-[#111120]">
+                    <p className="text-xs text-[#444460] mb-0.5">Balance</p>
+                    <div className="flex items-center gap-2">
+                      <p className="text-lg font-display font-bold text-white">{session.balance}</p>
+                      {isTestnet && (
+                        <span className="flex items-center gap-1 text-[10px] text-[#14F195] bg-[#14F195]/10 px-1.5 py-0.5 rounded">
+                          <Droplet size={9} />
+                          Test SOL
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
 
@@ -248,6 +329,11 @@ export default function Dashboard() {
                 <a href="https://coingecko.com" target="_blank" rel="noopener noreferrer" className="text-[#9945FF] inline-flex items-center gap-0.5 hover:underline">
                   CoinGecko <ExternalLink size={10} />
                 </a>
+                {isTestnet && (
+                  <span className="block mt-1 text-[#333350]">
+                    Testnet balance has no USD value.
+                  </span>
+                )}
               </p>
             </div>
           </div>

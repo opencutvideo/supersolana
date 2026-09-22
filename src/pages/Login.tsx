@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useNavigate, Link } from 'react-router-dom'
-import { Mail, Eye, EyeOff, AlertCircle, ExternalLink, CheckCircle2, Loader2, Send } from 'lucide-react'
+import { Mail, Eye, EyeOff, AlertCircle, ExternalLink, CheckCircle2, Loader2, Send, FlaskConical } from 'lucide-react'
 import Logo from '../components/Logo'
-import { useWallet } from '../context/WalletContext'
+import { useWallet, SolanaNetwork } from '../context/WalletContext'
 
 const ease = [0.22, 1, 0.36, 1] as const
 
@@ -39,6 +39,7 @@ function WalletButton({
   name,
   label,
   installUrl,
+  badge,
 }: {
   onClick: () => void
   disabled: boolean
@@ -47,6 +48,7 @@ function WalletButton({
   name: string
   label: string
   installUrl: string
+  badge?: React.ReactNode
 }) {
   if (!installed) {
     return (
@@ -77,7 +79,10 @@ function WalletButton({
     >
       <div className="shrink-0">{icon}</div>
       <div className="flex-1 text-left">
-        <p className="text-sm font-medium text-white">{name}</p>
+        <div className="flex items-center gap-2">
+          <p className="text-sm font-medium text-white">{name}</p>
+          {badge}
+        </div>
         <p className="text-xs text-[#555570] mt-0.5">{label}</p>
       </div>
       <div className="flex items-center gap-1.5">
@@ -85,6 +90,34 @@ function WalletButton({
         <span className="text-xs text-[#14F195]">Ready</span>
       </div>
     </button>
+  )
+}
+
+function NetworkToggle({ network, setNetwork }: { network: SolanaNetwork; setNetwork: (n: SolanaNetwork) => void }) {
+  return (
+    <div className="flex items-center gap-2 mb-5 p-1 rounded-xl bg-[#0A0A12] border border-[#1E1E2E]">
+      <button
+        onClick={() => setNetwork('mainnet')}
+        className={`flex-1 py-2 rounded-lg text-xs font-medium font-display transition-all duration-200 ${
+          network === 'mainnet'
+            ? 'bg-[#9945FF]/15 text-[#9945FF]'
+            : 'text-[#444460] hover:text-white'
+        }`}
+      >
+        Mainnet
+      </button>
+      <button
+        onClick={() => setNetwork('testnet')}
+        className={`flex-1 py-2 rounded-lg text-xs font-medium font-display transition-all duration-200 flex items-center justify-center gap-1.5 ${
+          network === 'testnet'
+            ? 'bg-[#14F195]/15 text-[#14F195]'
+            : 'text-[#444460] hover:text-white'
+        }`}
+      >
+        <FlaskConical size={11} />
+        Testnet
+      </button>
+    </div>
   )
 }
 
@@ -98,6 +131,7 @@ export default function Login() {
   } = useWallet()
   const navigate = useNavigate()
   const [tab, setTab] = useState<'wallet' | 'email'>('wallet')
+  const [network, setNetwork] = useState<SolanaNetwork>('mainnet')
 
   // Email flow
   const [emailStep, setEmailStep] = useState<EmailStep>('input')
@@ -134,7 +168,6 @@ export default function Login() {
       return
     }
     setSendingCode(true)
-    // Simulate sending email
     await new Promise(r => setTimeout(r, 1200))
     setSendingCode(false)
     setEmailStep('code')
@@ -157,7 +190,18 @@ export default function Login() {
     startResendTimer()
   }
 
+  const handleConnectPhantom = () => {
+    connectPhantom(network)
+  }
+
   const displayError = error || formError
+
+  const testnetBadge = (
+    <span className="flex items-center gap-1 px-1.5 py-0.5 rounded text-[9px] font-mono uppercase tracking-wider bg-[#14F195]/15 text-[#14F195] border border-[#14F195]/20">
+      <FlaskConical size={8} />
+      Testnet
+    </span>
+  )
 
   return (
     <div className="min-h-screen pt-16 flex items-center justify-center px-4 relative overflow-hidden">
@@ -237,18 +281,36 @@ export default function Login() {
                 transition={{ duration: 0.3, ease }}
                 className="space-y-3"
               >
-                <p className="text-xs text-[#555570] mb-5 text-center">
+                <p className="text-xs text-[#555570] mb-2 text-center">
                   Your wallet signature is your identity. No passwords, no custody.
                 </p>
 
+                <NetworkToggle network={network} setNetwork={setNetwork} />
+
+                {network === 'testnet' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.25, ease }}
+                    className="flex items-start gap-2.5 p-3 rounded-lg bg-[#14F195]/5 border border-[#14F195]/15 mb-1"
+                  >
+                    <FlaskConical size={13} className="text-[#14F195] mt-0.5 shrink-0" />
+                    <p className="text-xs text-[#8888AA] leading-relaxed">
+                      Solana Testnet uses test SOL (no real value). Get free test SOL from the
+                      <a href="https://faucet.solana.com" target="_blank" rel="noopener noreferrer" className="text-[#14F195] hover:underline ml-0.5">Solana Faucet</a>.
+                    </p>
+                  </motion.div>
+                )}
+
                 <WalletButton
-                  onClick={connectPhantom}
+                  onClick={handleConnectPhantom}
                   disabled={isConnecting}
                   installed={phantomInstalled}
                   icon={<PhantomIcon size={34} />}
                   name="Phantom"
-                  label="Solana wallet"
+                  label={network === 'testnet' ? `Solana ${network} wallet` : 'Solana wallet'}
                   installUrl="https://phantom.app"
+                  badge={network === 'testnet' ? testnetBadge : undefined}
                 />
 
                 <WalletButton

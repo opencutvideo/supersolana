@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useCallback, ReactNode } from 'react'
 
 export type WalletType = 'metamask' | 'phantom' | 'email' | null
+export type SolanaNetwork = 'mainnet' | 'testnet'
 
 export interface UserSession {
   address: string
@@ -10,6 +11,7 @@ export interface UserSession {
   joinedAt: string
   balance?: string
   balanceRaw?: number
+  network?: SolanaNetwork
 }
 
 interface WalletContextType {
@@ -17,12 +19,18 @@ interface WalletContextType {
   isConnecting: boolean
   connectStep: string
   connectMetamask: () => Promise<void>
-  connectPhantom: () => Promise<void>
+  connectPhantom: (network?: SolanaNetwork) => Promise<void>
   connectEmail: (email: string, code: string) => Promise<void>
   disconnect: () => void
   error: string | null
   phantomInstalled: boolean
   metamaskInstalled: boolean
+  refreshBalance: () => Promise<void>
+}
+
+const SOLANA_RPC: Record<SolanaNetwork, string> = {
+  mainnet: 'https://api.mainnet-beta.solana.com',
+  testnet: 'https://api.testnet.solana.com',
 }
 
 const WalletContext = createContext<WalletContextType | null>(null)
@@ -39,9 +47,9 @@ function getMetamask() {
   return eth?.isMetaMask ? eth : null
 }
 
-async function fetchSolBalance(address: string): Promise<string> {
+async function fetchSolBalance(address: string, network: SolanaNetwork): Promise<string> {
   try {
-    const res = await fetch('https://api.mainnet-beta.solana.com', {
+    const res = await fetch(SOLANA_RPC[network], {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -94,19 +102,19 @@ export function WalletProvider({ children }: { children: ReactNode }) {
     localStorage.setItem('supersolana_session', JSON.stringify(s))
   }
 
-  const connectPhantom = useCallback(async () => {
+  const connectPhantom = useCallback(async (network: SolanaNetwork = 'mainnet') => {
     setIsConnecting(true)
     setError(null)
     try {
       const phantom = getPhantom()
       if (!phantom) throw new Error('Phantom is not installed. Visit phantom.app to get the extension.')
 
-      setConnectStep('Requesting access...')
+      setConnectStep(`Requesting access on ${network}...`)
       const resp = await phantom.connect()
       const address = resp.publicKey.toString()
 
       setConnectStep('Reading on-chain balance...')
-      const balance = await fetchSolBalance(address)
+      const balance = await fetchSolBalance(address, network)
 
       saveSession({
         address,
@@ -114,6 +122,7 @@ export function WalletProvider({ children }: { children: ReactNode }) {
         username: address.slice(0, 4) + '..' + address.slice(-4),
         joinedAt: new Date().toISOString(),
         balance,
+        network,
       })
     } catch (err: unknown) {
       const code = (err as { code?: number })?.code
@@ -149,6 +158,7 @@ export function WalletProvider({ children }: { children: ReactNode }) {
         username: address.slice(0, 6) + '..' + address.slice(-4),
         joinedAt: new Date().toISOString(),
         balance,
+        network: 'mainnet',
       })
     } catch (err: unknown) {
       const code = (err as { code?: number })?.code
@@ -192,6 +202,7 @@ export function WalletProvider({ children }: { children: ReactNode }) {
         username: email.split('@')[0],
         joinedAt: new Date().toISOString(),
         balance: undefined,
+        network: 'mainnet',
       })
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Sign-in failed. Try again.')
@@ -200,6 +211,16 @@ export function WalletProvider({ children }: { children: ReactNode }) {
       setConnectStep('')
     }
   }, [])
+
+  const refreshBalance = useCallback(async () => {
+    if (!session || session.walletType !== 'phantom') return
+    const network = session.network ?? 'mainnet'
+    setConnectStep('Refreshing balance...')
+    const balance = await fetchSolBalance(session.address, network)
+    const updated = { ...session, balance }
+    saveSession(updated)
+    setConnectStep('')
+  }, [session])
 
   const disconnect = useCallback(() => {
     setSession(null)
@@ -211,6 +232,7 @@ export function WalletProvider({ children }: { children: ReactNode }) {
       session, isConnecting, connectStep,
       connectMetamask, connectPhantom, connectEmail,
       disconnect, error, phantomInstalled, metamaskInstalled,
+      refreshBalance,
     }}>
       {children}
     </WalletContext.Provider>
