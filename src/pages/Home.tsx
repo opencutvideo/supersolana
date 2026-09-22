@@ -68,12 +68,12 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* Official Twitter/X */}
+          {/* Official Twitter/X + Orynth badge */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.4, ease }}
-            className="mt-8 sm:mt-10 flex items-center justify-center gap-2"
+            className="mt-8 sm:mt-10 flex flex-col items-center gap-5"
           >
             <a
               href="https://x.com/supersolanahq"
@@ -85,6 +85,24 @@ export default function Home() {
               <span>@supersolanahq</span>
               <span className="hidden sm:inline text-[#333]">· Official</span>
             </a>
+
+            <motion.a
+              href="https://orynth.dev/projects/supersolana-1832"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.55, ease }}
+              className="block rounded-lg overflow-hidden hover:opacity-90 transition-opacity duration-200"
+            >
+              <img
+                src="https://orynth.dev/api/badge/supersolana-1832?theme=light&style=default"
+                alt="Featured on Orynth"
+                width={260}
+                height={80}
+                className="block"
+              />
+            </motion.a>
           </motion.div>
         </motion.div>
 
