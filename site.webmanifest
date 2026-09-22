@@ -1,0 +1,17 @@
+{
+  "name": "SuperSolana",
+  "short_name": "SuperSolana",
+  "description": "Solana blockchain tools for AI agents.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0A0F",
+  "theme_color": "#0A0A0F",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

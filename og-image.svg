@@ -1,0 +1,29 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="40" y1="30" x2="1160" y2="610" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#121225"/>
+      <stop offset="0.52" stop-color="#0A0A0F"/>
+      <stop offset="1" stop-color="#160D1B"/>
+    </linearGradient>
+    <linearGradient id="wordmark" x1="390" y1="260" x2="850" y2="390" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#9945FF"/>
+      <stop offset="1" stop-color="#FF3399"/>
+    </linearGradient>
+    <filter id="blur" x="-300" y="-300" width="1800" height="1230" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="90"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="120" cy="100" r="190" fill="#9945FF" fill-opacity="0.22" filter="url(#blur)"/>
+  <circle cx="1080" cy="550" r="220" fill="#FF3399" fill-opacity="0.16" filter="url(#blur)"/>
+  <path d="M0 510C210 430 320 555 520 500C720 445 910 345 1200 410" stroke="#14F195" stroke-opacity="0.2" stroke-width="2"/>
+  <path d="M0 540C210 460 320 585 520 530C720 475 910 375 1200 440" stroke="#9945FF" stroke-opacity="0.22" stroke-width="2"/>
+  <rect x="72" y="68" width="1056" height="494" rx="28" stroke="#FFFFFF" stroke-opacity="0.1"/>
+  <text x="100" y="145" fill="#14F195" font-family="Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="5">SOLANA × AI</text>
+  <text x="100" y="315" fill="white" font-family="Arial, sans-serif" font-size="78" font-weight="700">Your agent,</text>
+  <text x="100" y="405" fill="url(#wordmark)" font-family="Arial, sans-serif" font-size="88" font-weight="700">on-chain.</text>
+  <text x="104" y="468" fill="#B7B7C8" font-family="Arial, sans-serif" font-size="27">Wallets · NFTs · DeFi · Prices · Live Solana data</text>
+  <text x="104" y="520" fill="#68687A" font-family="monospace" font-size="19">supersolana.fun</text>
+  <circle cx="1030" cy="142" r="28" fill="#14F195" fill-opacity="0.12" stroke="#14F195" stroke-opacity="0.7"/>
+  <circle cx="1030" cy="142" r="8" fill="#14F195"/>
+</svg>
