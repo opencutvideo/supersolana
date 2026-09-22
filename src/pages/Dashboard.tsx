@@ -10,7 +10,7 @@ const MOCK_ACTIVITY = [
   { type: 'nft_lookup', label: 'NFT metadata: DeGods #4421', time: '8 min ago' },
   { type: 'price_feed', label: 'SOL/USDC price pulled', time: '15 min ago' },
   { type: 'defi_positions', label: 'Orca LP position read', time: '1 hr ago' },
-  { type: 'social_signals', label: 'Twitter scan: $BONK', time: '3 hr ago' },
+  { type: 'social_signals', label: 'Social scan: $BONK mentions', time: '3 hr ago' },
 ]
 
 const MOCK_STATS = [
@@ -344,9 +344,9 @@ export default function Dashboard() {
             <p className="text-xs text-[#444460] mb-3">Paste into any AI agent to activate all 6 SuperSolana tools.</p>
             <div className="flex items-center gap-2 bg-[#0A0A0F] rounded-lg px-4 py-3 border border-[#1A1A28]">
               <code className="text-xs font-mono text-[#14F195] flex-1 overflow-x-auto whitespace-nowrap">
-                Install SuperSolana: https://opencutvideo.github.io/supersolana/install.md
+                Install SuperSolana: https://supersolana.fun/install.md
               </code>
-              <CopyButton text="Install SuperSolana: https://opencutvideo.github.io/supersolana/install.md" />
+              <CopyButton text="Install SuperSolana: https://supersolana.fun/install.md" />
             </div>
           </div>
 

@@ -8,8 +8,8 @@ const TOOLS = [
   { name: 'nft_lookup', desc: 'Metaplex metadata, Magic Eden listings, floor prices' },
   { name: 'defi_positions', desc: 'Raydium, Orca, Jupiter: open positions in real time' },
   { name: 'price_feed', desc: 'SOL and token prices via CoinGecko + Birdeye' },
-  { name: 'social_monitor', desc: 'Twitter, Discord, Telegram signals with no API keys' },
-  { name: 'tx_decoder', desc: 'Parses raw transactions into human-readable summaries' },
+  { name: 'social_signals', desc: 'Twitter, Discord, Telegram signals with no API keys' },
+  { name: 'chain_events', desc: 'Subscribes to on-chain program events with structured summaries' },
 ]
 
 const ease = [0.22, 1, 0.36, 1] as const
@@ -47,7 +47,7 @@ export default function Home() {
             <span className="gradient-text">for AI agents.</span>
           </h1>
 
-          <p className="text-base sm:text-lg text-[#888] max-w-xl mx-auto leading-relaxed mb-8 sm:mb-10">
+          <p className="text-base sm:text-lg text-[#999] max-w-xl mx-auto leading-relaxed mb-8 sm:mb-10">
             Six Solana tools. One install command. Your AI agent reads wallets, tracks DeFi, and monitors markets with no API keys and no setup.
           </p>
 
@@ -126,7 +126,7 @@ export default function Home() {
                 <span className="text-white">Install SuperSolana:</span>
               </p>
               <p className="text-[#FF3399] mt-1 break-all">
-                https://opencutvideo.github.io/supersolana/install.md
+                https://supersolana.fun/install.md
               </p>
               <p className="text-[#555] mt-3">
                 <span className="text-[#00FF41]">✓</span> 6 tools registered. Ready.
@@ -149,7 +149,7 @@ export default function Home() {
             <h2 className="font-display font-bold text-2xl sm:text-3xl text-white mb-3">
               Six tools, one install
             </h2>
-            <p className="text-sm text-[#555]">Everything your agent needs to work with Solana.</p>
+            <p className="text-sm text-[#777]">Everything your agent needs to work with Solana.</p>
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -163,7 +163,7 @@ export default function Home() {
                 className="card p-4 rounded-xl"
               >
                 <p className="font-mono text-xs text-[#FF3399] mb-1.5">{tool.name}</p>
-                <p className="text-xs text-[#555] leading-relaxed">{tool.desc}</p>
+                <p className="text-xs text-[#777] leading-relaxed">{tool.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -202,7 +202,7 @@ export default function Home() {
                 <span className="font-mono font-bold text-lg sm:text-xl gradient-text shrink-0 w-8">{s.n}</span>
                 <div>
                   <h3 className="font-display font-semibold text-white text-sm">{s.t}</h3>
-                  <p className="text-sm text-[#555] mt-0.5">{s.d}</p>
+                  <p className="text-sm text-[#777] mt-0.5">{s.d}</p>
                 </div>
               </motion.div>
             ))}
@@ -229,7 +229,7 @@ export default function Home() {
             <h2 className="font-display font-bold text-3xl sm:text-4xl text-white mb-4">
               Start now
             </h2>
-            <p className="text-[#555] mb-6 sm:mb-8 text-sm">
+            <p className="text-[#777] mb-6 sm:mb-8 text-sm">
               Connect your wallet. Free to use.
             </p>
             <Link

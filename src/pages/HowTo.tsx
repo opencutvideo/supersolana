@@ -74,7 +74,7 @@ export default function HowTo() {
                 </div>
                 <div className="p-4 font-mono text-sm">
                   <p className="text-[#14F195]">
-                    Install SuperSolana: <span className="text-[#9945FF]">https://opencutvideo.github.io/supersolana/install.md</span>
+                    Install SuperSolana: <span className="text-[#9945FF]">https://supersolana.fun/install.md</span>
                   </p>
                 </div>
               </div>

@@ -41,7 +41,7 @@ export default function Cookies() {
           </div>
           <h1 className="font-display font-bold text-4xl text-white mb-3">Cookie Policy</h1>
           <p className="text-sm text-[#555570] mb-10">
-            Last updated: August 2026. This policy applies to opencutvideo.github.io/supersolana.
+            Last updated: September 2026. This policy applies to supersolana.fun.
           </p>
 
           <div className="space-y-8">

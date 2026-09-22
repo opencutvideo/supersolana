@@ -127,7 +127,7 @@ export function updateSeo(pathname: string) {
       '@id': `${SITE_URL}/#organization`,
       name: 'OpenCut Video',
       url: 'https://opencutvideo.com',
-      sameAs: ['https://github.com/opencutvideo/supersolana', 'https://twitter.com/opencutvideo'],
+      sameAs: ['https://github.com/opencutvideo/supersolana', 'https://x.com/supersolanahq'],
     },
     {
       '@type': 'WebSite',

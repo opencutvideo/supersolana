@@ -4,21 +4,21 @@ import { CheckCircle2, Circle, Clock } from 'lucide-react'
 const PHASES = [
   {
     phase: 'Phase 1',
-    period: 'August 2026',
-    status: 'current',
+    period: 'Live now',
+    status: 'done',
     title: 'Foundation',
     items: [
       { done: true, text: 'SuperSolana public launch' },
       { done: true, text: 'Wallet Reader tool (Solana mainnet)' },
       { done: true, text: 'Price Feed via CoinGecko + Birdeye' },
-      { done: false, text: 'NFT Lookup via Metaplex + Magic Eden' },
-      { done: false, text: 'Phantom + MetaMask login gate' },
+      { done: true, text: 'NFT Lookup via Metaplex + Magic Eden' },
+      { done: true, text: 'Phantom + MetaMask login gate' },
     ],
   },
   {
     phase: 'Phase 2',
-    period: 'September 2026',
-    status: 'upcoming',
+    period: 'Q4 2026',
+    status: 'current',
     title: 'DeFi Layer',
     items: [
       { done: false, text: 'Raydium LP position reader' },
@@ -30,7 +30,7 @@ const PHASES = [
   },
   {
     phase: 'Phase 3',
-    period: 'October 2026',
+    period: 'Q1 2027',
     status: 'upcoming',
     title: 'Social Intelligence',
     items: [
@@ -43,7 +43,7 @@ const PHASES = [
   },
   {
     phase: 'Phase 4',
-    period: 'November 2026',
+    period: 'Q2 2027',
     status: 'upcoming',
     title: 'On-Chain Events',
     items: [
@@ -56,7 +56,7 @@ const PHASES = [
   },
   {
     phase: 'Phase 5',
-    period: 'December 2026',
+    period: 'Q3 2027',
     status: 'upcoming',
     title: 'Platform Maturity',
     items: [
@@ -72,7 +72,7 @@ const PHASES = [
 const STATUS_CONFIG = {
   current: { color: '#14F195', label: 'In progress', bg: 'bg-[#14F195]/10', border: 'border-[#14F195]/30' },
   upcoming: { color: '#9945FF', label: 'Planned', bg: 'bg-[#9945FF]/5', border: 'border-[#9945FF]/20' },
-  done: { color: '#555570', label: 'Done', bg: 'bg-white/3', border: 'border-[#1E1E2E]' },
+  done: { color: '#14F195', label: 'Complete', bg: 'bg-[#14F195]/10', border: 'border-[#14F195]/25' },
 }
 
 export default function Roadmap() {
@@ -87,7 +87,7 @@ export default function Roadmap() {
             What we are building
           </h1>
           <p className="text-[#8888AA] text-lg mb-14">
-            August to December 2026. Five phases. One goal: give every AI agent complete Solana ecosystem access.
+            Five phases. One goal: give every AI agent complete Solana ecosystem access.
           </p>
 
           <div className="relative">

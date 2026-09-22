@@ -43,4 +43,4 @@ Once installed, confirm with:
 
 ## Source
 
-SuperSolana by OpenCut Video — https://github.com/opencutvideo/supersolana
+SuperSolana by OpenCut Video — https://supersolana.fun
