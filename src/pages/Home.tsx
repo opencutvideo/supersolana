@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { ArrowRight, Zap } from 'lucide-react'
+import { ArrowRight, Zap, Twitter } from 'lucide-react'
 import InteractiveBackground from '../components/InteractiveBackground'
 
 const TOOLS = [
@@ -19,35 +19,35 @@ export default function Home() {
     <div className="pt-16">
       <InteractiveBackground />
       {/* Hero */}
-      <section className="relative min-h-[88vh] flex flex-col items-center justify-center px-4 text-center overflow-hidden">
+      <section className="relative min-h-[88vh] flex flex-col items-center justify-center px-4 sm:px-6 text-center overflow-hidden">
         <div className="absolute inset-0 bg-hero-glow pointer-events-none" />
 
         {/* Orbs */}
-        <div className="absolute top-1/3 left-1/5 w-72 h-72 rounded-full bg-[#FF3399]/8 blur-3xl animate-pulse-slow pointer-events-none" />
-        <div className="absolute bottom-1/4 right-1/5 w-64 h-64 rounded-full bg-[#00FF41]/6 blur-3xl animate-pulse-slow pointer-events-none" style={{ animationDelay: '2s' }} />
+        <div className="absolute top-1/3 left-1/5 w-56 h-56 sm:w-72 sm:h-72 rounded-full bg-[#FF3399]/8 blur-3xl animate-pulse-slow pointer-events-none" />
+        <div className="absolute bottom-1/4 right-1/5 w-48 h-48 sm:w-64 sm:h-64 rounded-full bg-[#00FF41]/6 blur-3xl animate-pulse-slow pointer-events-none" style={{ animationDelay: '2s' }} />
 
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease }}
-          className="relative z-10 max-w-3xl"
+          className="relative z-10 max-w-3xl w-full"
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, ease }}
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#FF3399]/25 bg-[#FF3399]/8 text-[#FF3399] text-xs font-mono mb-8"
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#FF3399]/25 bg-[#FF3399]/8 text-[#FF3399] text-[11px] sm:text-xs font-mono mb-6 sm:mb-8"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-[#00FF41] animate-pulse" />
             Solana mainnet · live
           </motion.div>
 
-          <h1 className="font-display font-bold text-5xl sm:text-6xl lg:text-7xl text-white leading-[1.06] tracking-tight mb-5">
+          <h1 className="font-display font-bold text-4xl sm:text-6xl lg:text-7xl text-white leading-[1.08] sm:leading-[1.06] tracking-tight mb-4 sm:mb-5">
             Solana tools<br />
             <span className="gradient-text">for AI agents.</span>
           </h1>
 
-          <p className="text-lg text-[#888] max-w-xl mx-auto leading-relaxed mb-10">
+          <p className="text-base sm:text-lg text-[#888] max-w-xl mx-auto leading-relaxed mb-8 sm:mb-10">
             Six Solana tools. One install command. Your AI agent reads wallets, tracks DeFi, and monitors markets with no API keys and no setup.
           </p>
 
@@ -67,6 +67,25 @@ export default function Home() {
               <ArrowRight size={15} />
             </Link>
           </div>
+
+          {/* Official Twitter/X */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.4, ease }}
+            className="mt-8 sm:mt-10 flex items-center justify-center gap-2"
+          >
+            <a
+              href="https://x.com/supersolanahq"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-[#1A1A1A] text-[#666] hover:text-white hover:border-[#FF3399]/40 transition-all duration-200 text-xs font-medium"
+            >
+              <Twitter size={14} className="text-[#555]" />
+              <span>@supersolanahq</span>
+              <span className="hidden sm:inline text-[#333]">· Official</span>
+            </a>
+          </motion.div>
         </motion.div>
 
         {/* Install command */}
@@ -74,16 +93,16 @@ export default function Home() {
           initial={{ opacity: 0, y: 36 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.28, ease }}
-          className="relative z-10 mt-14 w-full max-w-xl"
+          className="relative z-10 mt-10 sm:mt-14 w-full max-w-xl"
         >
           <div className="card rounded-xl overflow-hidden glow-pink">
-            <div className="flex items-center gap-1.5 px-4 py-3 border-b border-[#1A1A1A] bg-[#0A0A0A]">
+            <div className="flex items-center gap-1.5 px-3 sm:px-4 py-3 border-b border-[#1A1A1A] bg-[#0A0A0A]">
               <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F57]" />
               <div className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]" />
               <div className="w-2.5 h-2.5 rounded-full bg-[#28C840]" />
-              <span className="ml-3 text-xs text-[#333] font-mono">agent shell</span>
+              <span className="ml-2 sm:ml-3 text-[11px] sm:text-xs text-[#333] font-mono">agent shell</span>
             </div>
-            <div className="p-5 font-mono text-sm">
+            <div className="p-4 sm:p-5 font-mono text-xs sm:text-sm">
               <p className="text-[#555]">
                 <span className="text-[#00FF41]">$</span>{' '}
                 <span className="text-white">Install SuperSolana:</span>
@@ -100,14 +119,14 @@ export default function Home() {
       </section>
 
       {/* Tools grid */}
-      <section className="py-20 px-4">
+      <section className="py-16 sm:py-20 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease }}
             viewport={{ once: true }}
-            className="mb-10"
+            className="mb-8 sm:mb-10"
           >
             <h2 className="font-display font-bold text-2xl sm:text-3xl text-white mb-3">
               Six tools, one install
@@ -134,21 +153,21 @@ export default function Home() {
       </section>
 
       {/* How it works */}
-      <section className="py-20 px-4 border-t border-[#111]">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 border-t border-[#111]">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease }}
             viewport={{ once: true }}
-            className="mb-10"
+            className="mb-8 sm:mb-10"
           >
             <h2 className="font-display font-bold text-2xl sm:text-3xl text-white mb-3">
               How it works
             </h2>
           </motion.div>
 
-          <div className="space-y-4">
+          <div className="space-y-3 sm:space-y-4">
             {[
               { n: '01', t: 'Connect wallet', d: 'Phantom or MetaMask, no passwords.' },
               { n: '02', t: 'Paste the install command', d: 'One line into your agent chat window.' },
@@ -160,9 +179,9 @@ export default function Home() {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ delay: i * 0.09, duration: 0.5, ease }}
                 viewport={{ once: true }}
-                className="card p-5 rounded-xl flex items-start gap-5"
+                className="card p-4 sm:p-5 rounded-xl flex items-start gap-4 sm:gap-5"
               >
-                <span className="font-mono font-bold text-xl gradient-text shrink-0 w-8">{s.n}</span>
+                <span className="font-mono font-bold text-lg sm:text-xl gradient-text shrink-0 w-8">{s.n}</span>
                 <div>
                   <h3 className="font-display font-semibold text-white text-sm">{s.t}</h3>
                   <p className="text-sm text-[#555] mt-0.5">{s.d}</p>
@@ -171,7 +190,7 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="mt-8">
+          <div className="mt-6 sm:mt-8">
             <Link to="/how-to" className="inline-flex items-center gap-2 text-sm text-[#FF3399] hover:text-[#FF55AA] font-medium transition-colors duration-200">
               Full guide <ArrowRight size={14} />
             </Link>
@@ -180,7 +199,7 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section className="py-24 px-4 relative overflow-hidden">
+      <section className="py-20 sm:py-24 px-4 sm:px-6 relative overflow-hidden">
         <div className="absolute inset-0 bg-hero-glow pointer-events-none" />
         <div className="relative z-10 max-w-xl mx-auto text-center">
           <motion.div
@@ -192,16 +211,28 @@ export default function Home() {
             <h2 className="font-display font-bold text-3xl sm:text-4xl text-white mb-4">
               Start now
             </h2>
-            <p className="text-[#555] mb-8 text-sm">
+            <p className="text-[#555] mb-6 sm:mb-8 text-sm">
               Connect your wallet. Free to use.
             </p>
             <Link
               to="/login"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl btn-primary text-sm font-semibold"
+              className="inline-flex items-center gap-2 px-6 sm:px-7 py-3.5 rounded-xl btn-primary text-sm font-semibold"
             >
               Connect Wallet
               <ArrowRight size={16} />
             </Link>
+
+            <div className="mt-6 sm:mt-8 flex items-center justify-center gap-2">
+              <a
+                href="https://x.com/supersolanahq"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-xs text-[#555] hover:text-[#FF3399] transition-colors duration-200"
+              >
+                <Twitter size={12} />
+                Follow @supersolanahq
+              </a>
+            </div>
           </motion.div>
         </div>
       </section>

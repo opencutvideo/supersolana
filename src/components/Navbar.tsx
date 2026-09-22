@@ -47,7 +47,7 @@ export default function Navbar() {
       >
         <nav className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2.5 group z-10">
+          <Link to="/" className="flex items-center gap-2 group z-10">
             <Logo size={28} />
             <span className="font-display font-bold text-base text-white tracking-tight">
               Super<span className="gradient-text">Solana</span>

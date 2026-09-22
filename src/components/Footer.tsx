@@ -36,11 +36,11 @@ export default function Footer() {
             </p>
             <div className="flex gap-3">
               <a
-                href="https://twitter.com/opencutvideo"
+                href="https://x.com/supersolanahq"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-lg border border-[#1A1A1A] text-[#444] hover:text-white hover:border-[#FF3399]/40 transition-all duration-200"
-                aria-label="Twitter"
+                aria-label="Official SuperSolana Twitter / X"
               >
                 <Twitter size={15} />
               </a>

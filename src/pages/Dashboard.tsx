@@ -158,7 +158,7 @@ export default function Dashboard() {
         </aside>
 
         {/* Mobile nav tabs */}
-        <div className="md:hidden fixed bottom-0 left-0 right-0 z-20 bg-[#0D0D16] border-t border-[#1E1E2E] flex">
+        <div className="md:hidden fixed bottom-0 left-0 right-0 z-20 bg-[#0D0D16] border-t border-[#1E1E2E] flex pb-safe">
           {NAV_ITEMS.map(item => (
             <button
               key={item.id}
